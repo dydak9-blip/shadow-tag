@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#060708">
 <title>그림자 술래</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="그림자 술래">
 <meta name="description" content="2~5인 실시간 1인칭 공포 술래잡기. 안드로이드 앱 또는 브라우저로 플레이.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@400;700;900&display=swap">
 <style>
@@ -25,8 +30,14 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(76px,22vw,124px);l
 .tag{font-size:11px;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.08);color:var(--dim)}
 .card.mine{border-color:rgba(255,58,52,.55);box-shadow:0 0 0 1px rgba(255,58,52,.2),0 0 30px rgba(179,25,31,.15)}
 .card.mine .tag{background:var(--blood);color:#fff}
-a.btn{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:15px 18px;border-radius:6px;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.05)}
-a.btn.primary{background:var(--blood);border-color:#e0383d;box-shadow:0 0 24px rgba(179,25,31,.35)}
+a.btn,button.btn{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:15px 18px;border-radius:6px;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.05)}
+a.btn.primary,button.btn.primary{background:var(--blood);border-color:#e0383d;box-shadow:0 0 24px rgba(179,25,31,.35)}
+button.btn{width:100%;cursor:pointer;font-family:var(--body)}
+button.btn:disabled{opacity:.5;cursor:default}
+details.card summary{cursor:pointer;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px;list-style:none}
+details.card summary::-webkit-details-marker{display:none}
+details.card summary::after{content:'▾';margin-left:auto;color:var(--dim)}
+details[open].card summary::after{content:'▴'}
 a.btn.exit{background:rgba(43,224,127,.14);border-color:rgba(43,224,127,.6);color:#c9ffe0}
 a.btn:focus-visible{outline:2px solid var(--cold);outline-offset:2px}
 .qr{display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -47,22 +58,31 @@ footer{font-size:11.5px;color:#5d584f}
     <p class="sub">1인칭 · 2~5인 · 실시간 공포 술래잡기</p>
   </div>
 
-  <section class="card" id="android">
-    <h2>안드로이드 <span class="tag" data-os="android">내 폰</span></h2>
-    <a class="btn primary" id="apk" href="https://github.com/dydak9-blip/shadow-tag/releases/latest/download/shadow-tag.apk">앱 다운로드 (APK)</a>
-    <ol>
-      <li>다운로드한 파일을 열고 <b>"이 출처 허용"</b>을 켜세요.</li>
-      <li>Play 프로텍트 경고가 뜨면 <b>"무시하고 설치"</b>를 누르세요. 스토어에 없는 앱이라 나오는 경고예요.</li>
-      <li>업데이트할 땐 지우지 말고 그대로 덮어서 설치하면 됩니다.</li>
+  <section class="card mine" id="install">
+    <h2>앱으로 설치 <span class="tag">추천 · 경고 없음</span></h2>
+    <button class="btn primary" id="installBtn" type="button">앱 설치</button>
+    <p id="installHint">설치하면 홈 화면에 아이콘이 생기고, 주소창 없이 전체 화면으로 실행돼요. 안드로이드와 아이폰 모두 같은 방에서 함께할 수 있어요.</p>
+    <ol id="guideAndroid" hidden>
+      <li><b>크롬</b>으로 이 페이지를 여세요. 카톡·네이버 앱 안에서 열었다면 오른쪽 위 메뉴의 <b>"다른 브라우저로 열기"</b>를 누르세요.</li>
+      <li>크롬 오른쪽 위 <b>⋮ 메뉴 → "앱 설치"</b> (또는 "홈 화면에 추가")를 누르세요.</li>
     </ol>
+    <ol id="guideIos" hidden>
+      <li><b>사파리</b>로 이 페이지를 여세요.</li>
+      <li>아래쪽 <b>공유 버튼(□↑) → "홈 화면에 추가"</b>를 누르세요.</li>
+      <li>아이폰은 진동이 지원되지 않아요.</li>
+    </ol>
+    <a class="btn" href="./play/">설치 없이 브라우저로 바로 플레이</a>
   </section>
 
-  <section class="card" id="iphone">
-    <h2>아이폰 · 기타 <span class="tag" data-os="ios">내 폰</span></h2>
-    <p>아이폰은 앱 설치가 안 돼서 <b>브라우저로 바로 플레이</b>합니다. 안드로이드 앱 사용자와 같은 방에서 함께할 수 있어요.</p>
-    <a class="btn exit" href="./play/">브라우저로 바로 플레이</a>
-    <p>사파리에서 <b>공유 → 홈 화면에 추가</b>를 하면 앱처럼 쓸 수 있어요. 진동은 아이폰에서 지원되지 않습니다.</p>
-  </section>
+  <details class="card" id="android">
+    <summary>안드로이드 APK 직접 설치 <span class="tag">보안 경고가 떠요</span></summary>
+    <p>스토어 밖에서 받은 앱이라 안드로이드가 경고를 띄웁니다. 위의 "앱 설치"를 쓰면 경고 없이 설치돼요.</p>
+    <a class="btn" id="apk" href="https://github.com/dydak9-blip/shadow-tag/releases/latest/download/shadow-tag.apk">APK 다운로드</a>
+    <ol>
+      <li>받은 파일을 열고 <b>"이 출처 허용"</b>을 켜세요.</li>
+      <li>Play 프로텍트 경고가 뜨면 <b>"무시하고 설치"</b>를 누르세요.</li>
+    </ol>
+  </details>
 
   <section class="card qr">
     <div id="qr"><img alt="이 페이지로 오는 QR 코드" id="qrImg"></div>
@@ -78,12 +98,24 @@ footer{font-size:11.5px;color:#5d584f}
   </p>
   <footer>같은 Wi-Fi에서 가장 안정적입니다.</footer>
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="play/lib/qrcode.min.js"></script>
 <script>
 (function(){
-  var ua=navigator.userAgent||'', ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1), android=/Android/i.test(ua);
-  document.querySelectorAll('.tag[data-os]').forEach(function(t){ var mine=(t.dataset.os==='ios'&&ios)||(t.dataset.os==='android'&&android); t.hidden=!mine; if(mine) t.closest('.card').classList.add('mine'); });
-  if(ios){ var i=document.getElementById('iphone'), a=document.getElementById('android'); i.parentNode.insertBefore(i,a); }
+  var ua=navigator.userAgent||'', ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var btn=document.getElementById('installBtn'), hint=document.getElementById('installHint'), deferred=null;
+  var standalone=window.matchMedia('(display-mode: fullscreen)').matches||window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  function guide(){ document.getElementById(ios?'guideIos':'guideAndroid').hidden=false; }
+  if(standalone){ btn.textContent='게임 시작'; btn.onclick=function(){ location.href='./play/'; }; }
+  else {
+    window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; btn.textContent='앱 설치'; });
+    window.addEventListener('appinstalled',function(){ deferred=null; btn.textContent='설치 완료 · 홈 화면에서 실행하세요'; btn.disabled=true; });
+    btn.onclick=function(){
+      if(deferred){ deferred.prompt(); deferred.userChoice.then(function(){ deferred=null; }); }
+      else { guide(); hint.textContent=ios?'아이폰은 사파리에서 아래 순서로 설치해요.':'이 브라우저에서는 버튼으로 바로 설치할 수 없어요. 아래 순서로 설치해 주세요.'; }
+    };
+    if(ios) guide();
+  }
+  if('serviceWorker' in navigator && window.isSecureContext) navigator.serviceWorker.register('sw.js').catch(function(){});
   var url=location.origin+location.pathname; document.getElementById('url').textContent=url;
   try{ var q=qrcode(0,'M'); q.addData(url); q.make(); document.getElementById('qrImg').src=q.createDataURL(6,2); }catch(e){ document.getElementById('qr').hidden=true; }
 })();

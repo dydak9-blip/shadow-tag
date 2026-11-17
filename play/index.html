@@ -7,6 +7,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>그림자 술래</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" href="../icons/icon-192.png">
+<meta name="apple-mobile-web-app-title" content="그림자 술래">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@400;700;900&display=swap">
 <style>
@@ -179,10 +184,10 @@ button:disabled{opacity:.4;cursor:default}
   </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script src="lib/three.min.js"></script>
+<script src="lib/qrcode.min.js"></script>
+<script src="lib/peerjs.min.js"></script>
+<script src="lib/jsQR.js"></script>
 <script>
 (() => {
 'use strict';
@@ -1271,6 +1276,7 @@ function boot(){
   setInterval(()=>{ if(mode==='menu'){ me.yaw+=.004; } },16);
 }
 boot();
+if(!IS_APP && 'serviceWorker' in navigator && window.isSecureContext) navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(()=>{});
 })();
 </script>
 </body>
