@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#060708">
+<title>그림자 술래</title>
+<meta name="description" content="2~5인 실시간 1인칭 공포 술래잡기. 안드로이드 앱 또는 브라우저로 플레이.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@400;700;900&display=swap">
+<style>
+:root{--void:#060708;--ink:#e9e4da;--dim:#8d877b;--blood:#b3191f;--glow:#ff3a34;--cold:#86c3e6;--exit:#2be07f;--line:rgba(233,228,218,.14);
+  --display:'East Sea Dokdo','Nanum Pen Script',cursive;--body:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--void);color:var(--ink);font-family:var(--body)}
+body{background:radial-gradient(120% 70% at 50% 0%,rgba(60,6,8,.6),transparent 70%),var(--void)}
+main{max-width:520px;margin:0 auto;padding:max(28px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(36px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:22px;text-align:center}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(76px,22vw,124px);line-height:.85;margin:8px 0 0;color:var(--glow);text-shadow:0 0 22px rgba(255,40,30,.45);animation:flick 7s infinite}
+@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.3}94%{opacity:.9}96%{opacity:.25}97%{opacity:1}}
+.sub{margin:0;color:var(--dim);letter-spacing:.3em;font-size:13px}
+.card{border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.03);padding:18px;display:flex;flex-direction:column;gap:12px;text-align:left}
+.card h2{margin:0;font-size:16px;display:flex;align-items:center;gap:8px}
+.card p{margin:0;font-size:13.5px;line-height:1.7;color:var(--dim)}
+.card ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.8;color:var(--dim)}
+.card b{color:var(--ink)}
+.tag{font-size:11px;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.08);color:var(--dim)}
+.card.mine{border-color:rgba(255,58,52,.55);box-shadow:0 0 0 1px rgba(255,58,52,.2),0 0 30px rgba(179,25,31,.15)}
+.card.mine .tag{background:var(--blood);color:#fff}
+a.btn{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:16px;padding:15px 18px;border-radius:6px;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.05)}
+a.btn.primary{background:var(--blood);border-color:#e0383d;box-shadow:0 0 24px rgba(179,25,31,.35)}
+a.btn.exit{background:rgba(43,224,127,.14);border-color:rgba(43,224,127,.6);color:#c9ffe0}
+a.btn:focus-visible{outline:2px solid var(--cold);outline-offset:2px}
+.qr{display:flex;flex-direction:column;align-items:center;gap:10px}
+#qr{background:#e9e4da;padding:10px;border-radius:6px;line-height:0}
+#qr img{width:200px;height:200px;image-rendering:pixelated}
+.qr p{margin:0;font-size:12.5px;color:var(--dim)}
+.url{font-size:12px;color:var(--dim);word-break:break-all;user-select:all}
+.rules{font-size:13px;line-height:1.8;color:var(--dim);text-align:left;border-top:1px solid var(--line);padding-top:16px;margin:0}
+.rules .r{color:#ff6b62}.rules .b{color:var(--cold)}.rules .g{color:var(--exit)}
+footer{font-size:11.5px;color:#5d584f}
+@media (prefers-reduced-motion:reduce){h1{animation:none}}
+</style>
+</head>
+<body>
+<main>
+  <div>
+    <h1>그림자 술래</h1>
+    <p class="sub">1인칭 · 2~5인 · 실시간 공포 술래잡기</p>
+  </div>
+
+  <section class="card" id="android">
+    <h2>안드로이드 <span class="tag" data-os="android">내 폰</span></h2>
+    <a class="btn primary" id="apk" href="https://github.com/dydak9-blip/shadow-tag/releases/latest/download/shadow-tag.apk">앱 다운로드 (APK)</a>
+    <ol>
+      <li>다운로드한 파일을 열고 <b>"이 출처 허용"</b>을 켜세요.</li>
+      <li>Play 프로텍트 경고가 뜨면 <b>"무시하고 설치"</b>를 누르세요. 스토어에 없는 앱이라 나오는 경고예요.</li>
+      <li>업데이트할 땐 지우지 말고 그대로 덮어서 설치하면 됩니다.</li>
+    </ol>
+  </section>
+
+  <section class="card" id="iphone">
+    <h2>아이폰 · 기타 <span class="tag" data-os="ios">내 폰</span></h2>
+    <p>아이폰은 앱 설치가 안 돼서 <b>브라우저로 바로 플레이</b>합니다. 안드로이드 앱 사용자와 같은 방에서 함께할 수 있어요.</p>
+    <a class="btn exit" href="./play/">브라우저로 바로 플레이</a>
+    <p>사파리에서 <b>공유 → 홈 화면에 추가</b>를 하면 앱처럼 쓸 수 있어요. 진동은 아이폰에서 지원되지 않습니다.</p>
+  </section>
+
+  <section class="card qr">
+    <div id="qr"><img alt="이 페이지로 오는 QR 코드" id="qrImg"></div>
+    <p>친구 폰 카메라로 찍으면 이 페이지가 열려요.</p>
+    <div class="url" id="url"></div>
+  </section>
+
+  <p class="rules">
+    모두 한곳에서 시작하고 <b class="r">10초 뒤 무작위로 한 명이 술래로 변합니다.</b><br>
+    <b class="b">도망자</b>는 3분을 버티거나 <b class="g">열쇠를 주워 초록 출구로 탈출</b>하면 승리.<br>
+    <b class="r">술래</b>는 닿으면 잡고, 질주와 덫을 씁니다. 마지막 15초엔 1.5배 빨라져요.<br>
+    방장이 <b>방 만들기</b> → 나머지는 <b>QR 스캔으로 참가</b>. 이어폰을 끼면 발소리로 방향을 알 수 있어요.
+  </p>
+  <footer>같은 Wi-Fi에서 가장 안정적입니다.</footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function(){
+  var ua=navigator.userAgent||'', ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1), android=/Android/i.test(ua);
+  document.querySelectorAll('.tag[data-os]').forEach(function(t){ var mine=(t.dataset.os==='ios'&&ios)||(t.dataset.os==='android'&&android); t.hidden=!mine; if(mine) t.closest('.card').classList.add('mine'); });
+  if(ios){ var i=document.getElementById('iphone'), a=document.getElementById('android'); i.parentNode.insertBefore(i,a); }
+  var url=location.origin+location.pathname; document.getElementById('url').textContent=url;
+  try{ var q=qrcode(0,'M'); q.addData(url); q.make(); document.getElementById('qrImg').src=q.createDataURL(6,2); }catch(e){ document.getElementById('qr').hidden=true; }
+})();
+</script>
+</body>
+</html>
